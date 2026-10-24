@@ -46,6 +46,9 @@ Radial ─► Moments ─► Asymptotics ─────────────
    └─► Student (Remark 3.2)                Sphere (Remark 4.3)
 ```
 
+The graph of which statement each proof uses, read from the compiled proofs, is in
+[`docs/dependencies.md`](docs/dependencies.md).
+
 The key fact behind everything is that `v(t)` is the image of `v_∞` under the affine map
 `y ↦ a(t) y + e^{-t} x₀` with `a(t) = (1 - e^{-t/α})^α`
 ([`Barenblatt.lean` L514](Cutfast/Barenblatt.lean#L514)). Together with Lemma 2.1 and the moments
