@@ -94,8 +94,11 @@ jobs:
 
   docs:
     name: Build API documentation
+    # doc-gen4 also documents every imported Mathlib module (75 to 105 minutes),
+    # so this job runs only on demand: Actions > CI > Run workflow.
+    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 180
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
