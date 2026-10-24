@@ -1,0 +1,314 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+version: "v0.4"
+
+project:
+  name: "Cutoff phenomenon for fast diffusion and porous medium equations"
+  description: >-
+    Formalization of the paper "On the cutoff phenomenon for fast diffusion and porous medium
+    equations" by D. Chafaï, M. Fathi and N. Simonov. For the Fokker–Planck version of the fast
+    diffusion / porous medium equation in ℝᵈ started from a Dirac mass, whose solution is an
+    explicit rescaled Barenblatt profile, the quadratic Wasserstein distance, the Tsallis-type
+    relative entropy and the Fisher information to equilibrium, maximized over initial points in
+    a ball of radius r√d, exhibit a cutoff phenomenon as d → ∞: they jump from +∞ to 0 at the
+    critical time max(1,α)/2 · log d for a fixed self-similarity exponent α ≠ 1/2, and at
+    1/2 · log d for a fixed exponent m > 1. The formalization also covers the Wasserstein
+    distance between a measure and its image under an affine map with positive semidefinite
+    linear part, the exact Gamma-function formulas for the moments and Lᵐ norms of the
+    full-space and compactly supported Barenblatt profiles and their high-dimensional
+    asymptotics, the normalization of the Barenblatt profile, and the fact that the explicit
+    solution solves the equation.
+  authors:
+    - "Djalil Chafaï"
+  license: "Apache-2.0"
+  responsible_maintainers:
+    - "Djalil Chafaï"
+
+classification:
+  arxiv: ["math.AP", "math.PR"]
+  msc2020: ["35K55", "35B40", "49Q22", "60J60"]
+
+sources:
+  - title: "On the cutoff phenomenon for fast diffusion and porous medium equations"
+    authors:
+      - "Djalil Chafaï"
+      - "Max Fathi"
+      - "Nikita Simonov"
+    id: "arXiv:2503.11770"
+    type: "article"
+    location: "https://arxiv.org/abs/2503.11770"
+    relationship: "formalizes"
+    license: "unknown"
+    author_endorsement: "participated"
+
+related_formalizations: []
+
+status:
+  scope: >-
+    All mathematical statements of the paper are formalized and proved in Challenge.lean (49
+    theorems): Theorems 1.1 and 1.2 for W₂², Hₘ and Iₘ; Lemmas 2.1, 2.2, 3.1, 4.1, 4.2; the
+    normalization of the Barenblatt profile; the solutions u of ∂ₜu = Δ(uᵐ) and v of the
+    Fokker–Planck version, which solve their equations, are probability densities, tend to δ_{x₀}
+    as t → 0⁺, are linked by the time change (uv)/(FDEFPv), and v(t) → v_∞ as t → ∞; the moment
+    condition m > d/(d+2) and W₂² = ∞ for heavier tails; the entropy dissipation identity
+    dHₘ/dt = -Iₘ and the Bregman form (tsalisbis) of Hₘ with Hₘ ≥ 0; the diffusion limit m → 1
+    (Gaussian, heat kernel, Mehler formula); the cutoff for initial points in balls of radius
+    r·d^θ (Section 1.4.3); Remark 3.2 (Student t-distributions: stochastic representation,
+    moments, Gaussian limit, Fisher–Snedecor law, Barenblatt profiles as Student densities,
+    σ_d² → 2πe) and Remark 4.3 (projections and stereographic projection of the uniform law on
+    spheres, Gaussian representation). Not formalized: uniqueness of solutions of the PDE with
+    Dirac data (the solution is the explicit formula, as in the paper), Demange's spherical
+    profile (Section 1.4.5, needs the Laplace–Beltrami operator) and purely qualitative comments.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms: []
+
+automation:
+  methods:
+    - method: "agent"
+      models: ["Claude Opus 5.5"]
+      framework: "Claude Code"
+      tool_setup: >-
+        Claude Code orchestrating parallel sub-agents, one per proof module, each compiling with
+        `lake env lean` against fixed sorry-stubbed interfaces; the statement file was written
+        first and audited separately.
+      cost:
+        wall_time: "about 3.5 hours of wall-clock time, in two phases of 8 and 7 parallel sub-agents"
+        spend_usd: "subscription-based"
+        hardware: "local machine"
+      prompting_notes: >-
+        The human asked to fully formalize the paper following Palomar standards; the agent
+        designed the Challenge statements, a module blueprint, and briefs for sub-agents.
+  spend_usd: "subscription-based"
+  notes: >-
+    The orchestrating agent wrote Challenge.lean, a module blueprint with fixed sorry-stubbed
+    interfaces, and briefs; sub-agents proved the modules in parallel; the orchestrator
+    integrated, built, checked axioms and ran lake comparator. Human review of the statements
+    is pending.
+
+fidelity:
+  divergences: >-
+    (1) In Theorems 1.1 and 1.2 the "+∞" case is stated for 0 < ε < 1 (for ε ≥ 1 the time
+    (1-ε)c log d is not positive). (2) W₂² and Iₘ take values in [0,∞]; Hₘ is a Bochner integral,
+    so its integrability is stated explicitly, and its supremum is taken in EReal. (3) The
+    second moment in Lemma 2.1 appears as ∫|(A-I)x|² dμ, which equals Tr((A-I)² M_μ); the
+    covariance form of the lemma is not stated separately. (4) Lemma 2.2 assumes both
+    covariance matrices positive definite (the paper says positive semidefinite, but its proof
+    inverts Σ_μ). (4b) The errors of the remarks listed in ERRATA.md (items 8–14) are corrected
+    in the Lean statements: projected spherical constant, Fisher–Snedecor normalization, Gaussian
+    limit 𝒩(x₀,Σ), stereographic density, and the m → 1 limit of the Tsallis function stated as
+    (xᵐ - x)/(m - 1) → x log x. (5) In eq. (Bac) the paper's range "a > d-2p" is corrected to -d < a < 2p-d;
+    eq. (CBac) is proved for all a > -d; eq. (Bmpme) is stated for m > 0 (the paper's m = 0
+    would need the convention 0⁰ = 0). (6) In Lemmas 3.1 and 4.1 the O(1) differences are in
+    fact eventually exactly 0 (virial identity), which is what is proved. (7) The distances are
+    those of the paper; the Fisher information uses Mathlib's gradient, which is irrelevant on
+    {v = 0} because the integrand carries the factor v.
+
+review:
+  status: "self-assessed"
+  reviewers:
+    - "none"
+  notes: >-
+    Statements were written and audited by the orchestrating agent against the paper (including
+    a numerical check of the PDE identity); a human audit by the paper's author is pending.
+
+alignment:
+  namespace: "Cutfast"
+  statements:
+    - source: "Theorem 1.1"
+      lean: "Cutfast.cutoff_wassersteinSq"
+      module: "Challenge"
+      status: "proved"
+    - source: "Theorem 1.1"
+      lean: "Cutfast.cutoff_relEntropy"
+      module: "Challenge"
+      status: "proved"
+    - source: "Theorem 1.1"
+      lean: "Cutfast.cutoff_fisherInfo"
+      module: "Challenge"
+      status: "proved"
+    - source: "Theorem 1.2"
+      lean: "Cutfast.cutoff_fixedExponent_wassersteinSq"
+      module: "Challenge"
+      status: "proved"
+    - source: "Theorem 1.2"
+      lean: "Cutfast.cutoff_fixedExponent_relEntropy"
+      module: "Challenge"
+      status: "proved"
+    - source: "Theorem 1.2"
+      lean: "Cutfast.cutoff_fixedExponent_fisherInfo"
+      module: "Challenge"
+      status: "proved"
+    - source: "Lemma 2.1"
+      lean: "Cutfast.wassersteinSq_map_affine"
+      module: "Challenge"
+      status: "proved"
+    - source: "Lemma 2.2"
+      lean: "Cutfast.wassersteinSq_elliptic"
+      module: "Challenge"
+      status: "proved"
+    - source: "Lemma 3.1, eq. (Bac)"
+      lean: "Cutfast.fullBarenblatt_moment"
+      module: "Challenge"
+      status: "proved"
+    - source: "Lemma 3.1, eq. (Bm)"
+      lean: "Cutfast.fullBarenblatt_integral_rpow"
+      module: "Challenge"
+      status: "proved"
+    - source: "Lemma 3.1, eqs. (M2sim), (difference-fde)"
+      lean: "Cutfast.fullBarenblatt_asymptotics"
+      module: "Challenge"
+      status: "proved"
+    - source: "Lemma 4.1, eq. (CBac)"
+      lean: "Cutfast.compactBarenblatt_moment"
+      module: "Challenge"
+      status: "proved"
+    - source: "Lemma 4.1, eq. (Bmpme)"
+      lean: "Cutfast.compactBarenblatt_integral_rpow"
+      module: "Challenge"
+      status: "proved"
+    - source: "Lemma 4.1, eqs. (limit-alpha-constant-pme), (difference-pme)"
+      lean: "Cutfast.compactBarenblatt_asymptotics"
+      module: "Challenge"
+      status: "proved"
+    - source: "Lemma 4.2"
+      lean: "Cutfast.compactBarenblatt_fixedExponent_asymptotics"
+      module: "Challenge"
+      status: "proved"
+    - source: "Section 1.2, eq. (B)"
+      lean: "Cutfast.barenblattConst_spec"
+      module: "Challenge"
+      status: "proved"
+    - source: "Section 1.2, eq. (FDEFPv)"
+      lean: "Cutfast.solution_isProbabilityDensity"
+      module: "Challenge"
+      status: "proved"
+    - source: "Section 1.2, eq. (vinf)"
+      lean: "Cutfast.equilibrium_isProbabilityDensity"
+      module: "Challenge"
+      status: "proved"
+    - source: "Section 1.2, eq. (FDEFP)"
+      lean: "Cutfast.solution_hasDerivAt"
+      module: "Challenge"
+      status: "proved"
+    - source: "Section 1.2, eq. (sol)"
+      lean: "Cutfast.fdeSolution_hasDerivAt"
+      module: "Challenge"
+      status: "proved"
+    - source: "Section 1.2, eq. (sol)"
+      lean: "Cutfast.fdeSolution_isProbabilityDensity"
+      module: "Challenge"
+      status: "proved"
+    - source: "Section 1.2, eqs. (uv), (FDEFPv)"
+      lean: "Cutfast.solution_eq_fdeSolution"
+      module: "Challenge"
+      status: "proved"
+    - source: "Section 1.2, initial condition"
+      lean: "Cutfast.tendsto_fdeSolution_zero"
+      module: "Challenge"
+      status: "proved"
+    - source: "Section 1.2, initial condition"
+      lean: "Cutfast.tendsto_solution_zero"
+      module: "Challenge"
+      status: "proved"
+    - source: "Section 1.2, eq. (vinf)"
+      lean: "Cutfast.tendsto_solution_atTop"
+      module: "Challenge"
+      status: "proved"
+    - source: "Section 1.2, finite second moment"
+      lean: "Cutfast.integrable_sq_mul_equilibrium_iff"
+      module: "Challenge"
+      status: "proved"
+    - source: "Section 1.3, W₂ infinite for d ≤ 2"
+      lean: "Cutfast.wassersteinSq_eq_top"
+      module: "Challenge"
+      status: "proved"
+    - source: "Section 1.3, dH/dt = -I"
+      lean: "Cutfast.relEntropy_hasDerivAt"
+      module: "Challenge"
+      status: "proved"
+    - source: "Section 1.3, eq. (tsalisbis)"
+      lean: "Cutfast.relEntropy_eq_bregman"
+      module: "Challenge"
+      status: "proved"
+    - source: "Section 1.3, Tsallis function"
+      lean: "Cutfast.tsallis_strictConvexOn_tendsto_log"
+      module: "Challenge"
+      status: "proved"
+    - source: "Section 1.4.2"
+      lean: "Cutfast.tendsto_barenblatt_one"
+      module: "Challenge"
+      status: "proved"
+    - source: "Section 1.4.2, eq. (heatkernel)"
+      lean: "Cutfast.tendsto_fdeSolution_one"
+      module: "Challenge"
+      status: "proved"
+    - source: "Section 1.4.2, Mehler formula"
+      lean: "Cutfast.tendsto_solution_one"
+      module: "Challenge"
+      status: "proved"
+    - source: "Section 1.4.3"
+      lean: "Cutfast.cutoff_wassersteinSq_radius"
+      module: "Challenge"
+      status: "proved"
+    - source: "Section 1.4.3"
+      lean: "Cutfast.cutoff_relEntropy_radius"
+      module: "Challenge"
+      status: "proved"
+    - source: "Section 1.4.3"
+      lean: "Cutfast.cutoff_fisherInfo_radius"
+      module: "Challenge"
+      status: "proved"
+    - source: "Section 1.4.3"
+      lean: "Cutfast.cutoff_fixedExponent_wassersteinSq_radius"
+      module: "Challenge"
+      status: "proved"
+    - source: "Section 1.4.3"
+      lean: "Cutfast.cutoff_fixedExponent_relEntropy_radius"
+      module: "Challenge"
+      status: "proved"
+    - source: "Section 1.4.3"
+      lean: "Cutfast.cutoff_fixedExponent_fisherInfo_radius"
+      module: "Challenge"
+      status: "proved"
+    - source: "After Lemma 4.2, support radius"
+      lean: "Cutfast.compactBarenblatt_support"
+      module: "Challenge"
+      status: "proved"
+    - source: "Remark 3.2"
+      lean: "Cutfast.student_law"
+      module: "Challenge"
+      status: "proved"
+    - source: "Remark 3.2"
+      lean: "Cutfast.student_moments"
+      module: "Challenge"
+      status: "proved"
+    - source: "Remark 3.2"
+      lean: "Cutfast.tendsto_student_gaussian"
+      module: "Challenge"
+      status: "proved"
+    - source: "Remark 3.2"
+      lean: "Cutfast.student_fisherSnedecor"
+      module: "Challenge"
+      status: "proved"
+    - source: "Remark 3.2"
+      lean: "Cutfast.barenblatt_eq_student"
+      module: "Challenge"
+      status: "proved"
+    - source: "Remark 3.2"
+      lean: "Cutfast.barenblatt_student_dMinusOne"
+      module: "Challenge"
+      status: "proved"
+    - source: "Remark 4.3"
+      lean: "Cutfast.sphereUniform_map_projFirst"
+      module: "Challenge"
+      status: "proved"
+    - source: "Remark 4.3"
+      lean: "Cutfast.stdGaussian_map_sphereUniform"
+      module: "Challenge"
+      status: "proved"
+    - source: "Remark 4.3"
+      lean: "Cutfast.sphereUniform_map_stereoProj"
+      module: "Challenge"
+      status: "proved"
+
+acknowledgements: "Mathlib and the Lean FRO; the Palomar template."
