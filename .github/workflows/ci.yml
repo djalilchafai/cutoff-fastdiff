@@ -123,9 +123,13 @@ jobs:
             docbuild/.lake/build/doc-data
           key: docs-${{ hashFiles('lean-toolchain', 'docbuild/lake-manifest.json') }}-${{ github.run_id }}
           restore-keys: docs-${{ hashFiles('lean-toolchain', 'docbuild/lake-manifest.json') }}-
-      - name: Render the HTML again
-        # The HTML is not cached, so Lake's marker saying it was rendered must go.
-        run: rm -f docbuild/.lake/build/doc-data/*.docs_built*
+      - name: Redo the steps that write into the uncached doc folder
+        # The HTML rendering and the bibliography step (which writes
+        # doc/references.bib) have their outputs in doc/, which is not cached:
+        # remove their cached outputs and markers so that Lake runs them again.
+        run: |
+          rm -f docbuild/.lake/build/doc-data/*.docs_built*
+          rm -f docbuild/.lake/build/doc-data/references.json*
       - name: Build doc-gen4 output
         working-directory: docbuild
         env:
