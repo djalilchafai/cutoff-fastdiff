@@ -2,6 +2,7 @@
 
 [![CI](https://github.com/djalilchafai/cutoff-fastdiff/actions/workflows/ci.yml/badge.svg?branch=main&event=push)](https://github.com/djalilchafai/cutoff-fastdiff/actions/workflows/ci.yml)
 [![API docs](https://img.shields.io/badge/docs-API-blue)](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast.html)
+[![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE)
 
 A Lean 4 / Mathlib formalization, in the [Palomar](https://palomar-registry.org/) format, of
 
