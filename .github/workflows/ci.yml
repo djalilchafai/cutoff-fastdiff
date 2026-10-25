@@ -10,7 +10,8 @@ permissions:
   contents: read
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  # The event is part of the group so that a push does not cancel an on-demand docs run.
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -115,11 +116,26 @@ jobs:
           DISABLE_EQUATIONS: "1"
           DOCGEN_SRC: github
         run: lake build Cutfast:docs
-      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+      - name: Keep the Cutfast pages only (GitHub Pages is limited to 1 GB)
+        run: python3 scripts/prune-docs.py docbuild/.lake/build/doc
+      - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9
         with:
-          name: api-documentation
           path: docbuild/.lake/build/doc
-          if-no-files-found: error
+
+  pages:
+    name: Publish API documentation
+    needs: docs
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346
 
   comparator:
     name: Check statement against solution
