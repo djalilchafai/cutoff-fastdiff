@@ -95,8 +95,9 @@ jobs:
 
   docs:
     name: Build API documentation
-    # doc-gen4 also documents every imported Mathlib module (75 to 105 minutes),
-    # so this job runs only on demand: Actions > CI > Run workflow.
+    # doc-gen4 also documents every imported Mathlib module (about 85 minutes
+    # without the cache below), so this job runs only on demand:
+    # Actions > CI > Run workflow.
     if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     timeout-minutes: 180
@@ -109,6 +110,19 @@ jobs:
       - uses: leanprover/lean-action@24581d74d674803a25a81b10b059c5c0cdd344c6
         with:
           build: false
+      - name: Restore the documentation database
+        # Almost all the time goes into extracting each module's documentation
+        # into api-docs.db; doc-data holds Lake's markers and traces for it, so
+        # unchanged modules (all of Mathlib) are skipped. The HTML is rendered
+        # again from the database each time (under two minutes). The key changes
+        # with the Mathlib and doc-gen4 versions; each run saves its own entry.
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
+        with:
+          path: |
+            docbuild/.lake/build/api-docs.db
+            docbuild/.lake/build/doc-data
+          key: docs-${{ hashFiles('lean-toolchain', 'docbuild/lake-manifest.json') }}-${{ github.run_id }}
+          restore-keys: docs-${{ hashFiles('lean-toolchain', 'docbuild/lake-manifest.json') }}-
       - name: Build doc-gen4 output
         working-directory: docbuild
         env:
