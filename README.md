@@ -4,6 +4,7 @@
 [![API docs](https://img.shields.io/badge/docs-API-blue)](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast.html)
 [![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE)
 [![arXiv](https://img.shields.io/badge/arXiv-2503.11770-b31b1b)](https://arxiv.org/abs/2503.11770)
+[![Lean v4.35.0-rc2](https://img.shields.io/badge/Lean-v4.35.0--rc2-blue)](lean-toolchain)
 
 A Lean 4 / Mathlib formalization, in the [Palomar](https://palomar-registry.org/) format, of
 
