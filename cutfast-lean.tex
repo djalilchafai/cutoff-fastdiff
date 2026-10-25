@@ -29,15 +29,21 @@ and Institut Universitaire de France}
 \begin{document}
 
 \begin{abstract}
-  The cutoff phenomenon, conceptualized at the origin for finite Markov chains,
-  states that for a parametric family of evolution equations, started from a point, the distance towards a long time
-  equilibrium may become more and more abrupt for certain choices of initial conditions, when the parameter tends to infinity. This threshold phenomenon can be seen as a critical competition between trend to equilibrium and worst initial condition. In
-  this note, we investigate this phenomenon beyond stochastic processes, in the context of the analysis of nonlinear partial differential
+  The cutoff phenomenon, conceptualized at the origin for finite Markov
+  chains, states that for a parametric family of evolution equations, started
+  from a point, the distance towards a long time equilibrium may become more
+  and more abrupt for certain choices of initial conditions, when the
+  parameter tends to infinity. This threshold phenomenon can be seen as a
+  critical competition between trend to equilibrium and worst initial
+  condition. In this note, we investigate this phenomenon beyond stochastic
+  processes, in the context of the analysis of nonlinear partial differential
   equations, by proving cutoff for the fast diffusion and porous medium
-  Fokker\,--\,Planck equations on the Euclidean space, when the dimension tends to infinity. We formulate the phenomenon using quadratic Wasserstein distance, as well as using specific relative entropy and Fisher information. Our high dimensional
-  asymptotic analysis uses the exact solvability of the model involving
-  Barenblatt profiles.
-  It includes the Ornstein\,--\,Uhlenbeck dynamics as a special linear case.
+  Fokker\,--\,Planck equations on the Euclidean space, when the dimension
+  tends to infinity. We formulate the phenomenon using quadratic Wasserstein
+  distance, as well as using specific relative entropy and Fisher information.
+  Our high dimensional asymptotic analysis uses the exact solvability of the
+  model involving Barenblatt profiles. It includes the Ornstein\,--\,Uhlenbeck
+  dynamics as a special linear case.
 \end{abstract}
 
 \subjclass[2020]{
@@ -290,8 +296,15 @@ We emphasize that the cutoff phenomenon can be studied with respect to other par
 This work has been supported by the Project CONVIVIALITY ANR-23-CE40-0003 of the French National Research Agency. 
 We thank the anonymous referee for pointing out several relevant references that were missing in the initial version of this paper.
 
-\subsection*{Declaration of AI use}
-The mathematics of this paper was done without the use of AI. The Lean 4 / Mathlib formalization of the results of this paper, available at \url{https://github.com/djalilchafai/cutoff-fastdiff}, was produced with the AI agent Claude Code (model Claude Opus 5.5, Anthropic), under the supervision of the first author. The Lean proofs are checked by the Lean kernel, and the authors take full responsibility for the content of the paper.
+\subsection*{Artificial intelligence statement}
+The mathematical results in arXiv v1 of this article were obtained without the
+use of artificial intelligence. Version 2 corrects mathematical errors
+identified during the formalization of the results in Lean 4 using Mathlib.
+The formalization is available at
+\url{https://github.com/djalilchafai/cutoff-fastdiff}. It was developed using
+Claude Code with Anthropic's Claude Opus 5.5 model, under the supervision of
+the first author. The formal proofs are checked by the Lean kernel. The
+authors take full responsibility for the content of the article.
 
 \section{Useful lemmas about Wasserstein distance}
 
@@ -746,3 +759,8 @@ and we conclude as previously.
 
 \end{document}
 
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
