@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
-"""Count the lines of the formalization and of the part of Mathlib it uses, into README.md.
+"""Count the lines of the formalization and of the part of Mathlib it uses, into README.md and
+FORMALIZATION_GUIDE.md.
 
 "Used" means reached from the development lemmas `T'` of the advertised theorems `T`
 (comparator.json) through the types and
 bodies of declarations, instances included: everything the kernel checks for them. For each
 library, the source lines of the reached declarations are summed (auto-generated declarations
 have no source lines). The table goes between the `lines:begin` and `lines:end` markers of
-README.md.
+each target file.
 
 Run `lake build` first, then `python3 scripts/count-lines.py`.
 """
@@ -18,7 +19,7 @@ import sys
 import tempfile
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-README = ROOT / "README.md"
+TARGETS = [ROOT / "README.md", ROOT / "FORMALIZATION_GUIDE.md"]
 BEGIN, END = "<!-- lines:begin -->", "<!-- lines:end -->"
 
 LEAN_QUERY = r"""
@@ -113,14 +114,15 @@ def table() -> str:
 
 
 def main() -> None:
-    text = README.read_text(encoding="utf-8")
-    if BEGIN not in text or END not in text:
-        sys.exit(f"README.md has no {BEGIN} ... {END} block")
-    head, rest = text.split(BEGIN, 1)
-    _, tail = rest.split(END, 1)
-    README.write_text(f"{head}{BEGIN}\n{table()}\n{END}{tail}", encoding="utf-8")
-    print("updated README.md")
-
+    block = table()
+    for target in TARGETS:
+        text = target.read_text(encoding="utf-8")
+        if BEGIN not in text or END not in text:
+            sys.exit(f"{target.name} has no {BEGIN} ... {END} block")
+        head, rest = text.split(BEGIN, 1)
+        _, tail = rest.split(END, 1)
+        target.write_text(f"{head}{BEGIN}\n{block}\n{END}{tail}", encoding="utf-8")
+        print(f"updated {target.name}")
 
 if __name__ == "__main__":
     main()
