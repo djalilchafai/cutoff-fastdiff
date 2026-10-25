@@ -27,19 +27,19 @@ reading the proofs line by line.
 
 | Paper | Lean (`Challenge.lean`) | Remarks |
 |---|---|---|
-| `ℝᵈ` | `E d = EuclideanSpace ℝ (Fin d)` | Euclidean norm `‖x‖` |
-| `α = 1/(2 - d(1-m))` | `alpha d m` | |
-| `B`, `c = c_{d,m}` (eq. (B)) | `barenblatt d m`, `barenblattConst d m` | `c` is chosen by `Classical.choose` among the constants making `B` a probability density, with junk value `0` if there is none; `barenblattConst_spec` proves that it exists and is unique |
-| `v(t,x)` (eq. (FDEFPv)) | `solution d m x₀ t x` | the explicit formula, as in the paper |
-| `v_∞` (eq. (vinf)) | `equilibrium d m` | |
-| `u(t,x)` (eq. (sol)) | `fdeSolution d m x₀ t x` | |
-| `m = ((d-2)α+1)/(dα)` | `exponentOfAlpha α d` | |
-| the law `f(x) dx` | `densityMeasure f` | `volume.withDensity (ofReal ∘ f)` |
-| `W₂²(μ,ν)` | `wassersteinSq μ ν : ℝ≥0∞` | infimum over all couplings, with values in `[0,∞]`; `+∞` when no coupling has finite cost |
-| `Hₘ(f ∣ v_∞)` (eq. (tsalis)) | `relEntropy m f (equilibrium d m) : ℝ` | Bochner integral of `relEntropyDensity`; it is `0` if the integrand is not integrable, so integrability is always proved alongside |
-| `Iₘ(f ∣ v_∞)` (eq. (fisher)) | `fisherInfo m f : ℝ≥0∞` | lower Lebesgue integral, values in `[0,∞]`; Mathlib's `gradient` is `0` where `f^{m-1}` is not differentiable, which only happens where `f = 0` or on a null set |
+| `ℝᵈ` | [`E d = EuclideanSpace ℝ (Fin d)`](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Defs.html#Cutfast.E) | Euclidean norm `‖x‖` |
+| `α = 1/(2 - d(1-m))` | [`alpha d m`](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Defs.html#Cutfast.alpha) | |
+| `B`, `c = c_{d,m}` (eq. (B)) | [`barenblatt d m`](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Defs.html#Cutfast.barenblatt), [`barenblattConst d m`](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Defs.html#Cutfast.barenblattConst) | `c` is chosen by `Classical.choose` among the constants making `B` a probability density, with junk value `0` if there is none; `barenblattConst_spec` proves that it exists and is unique |
+| `v(t,x)` (eq. (FDEFPv)) | [`solution d m x₀ t x`](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Defs.html#Cutfast.solution) | the explicit formula, as in the paper |
+| `v_∞` (eq. (vinf)) | [`equilibrium d m`](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Defs.html#Cutfast.equilibrium) | |
+| `u(t,x)` (eq. (sol)) | [`fdeSolution d m x₀ t x`](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Defs.html#Cutfast.fdeSolution) | |
+| `m = ((d-2)α+1)/(dα)` | [`exponentOfAlpha α d`](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Defs.html#Cutfast.exponentOfAlpha) | |
+| the law `f(x) dx` | [`densityMeasure f`](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Defs.html#Cutfast.densityMeasure) | `volume.withDensity (ofReal ∘ f)` |
+| `W₂²(μ,ν)` | [`wassersteinSq μ ν : ℝ≥0∞`](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Defs.html#Cutfast.wassersteinSq) | infimum over all couplings, with values in `[0,∞]`; `+∞` when no coupling has finite cost |
+| `Hₘ(f ∣ v_∞)` (eq. (tsalis)) | [`relEntropy m f (equilibrium d m) : ℝ`](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Defs.html#Cutfast.relEntropy) | Bochner integral of `relEntropyDensity`; it is `0` if the integrand is not integrable, so integrability is always proved alongside |
+| `Iₘ(f ∣ v_∞)` (eq. (fisher)) | [`fisherInfo m f : ℝ≥0∞`](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Defs.html#Cutfast.fisherInfo) | lower Lebesgue integral, values in `[0,∞]`; Mathlib's `gradient` is `0` where `f^{m-1}` is not differentiable, which only happens where `f = 0` or on a null set |
 | `(·)₊^p` | `(max · 0) ^ p` | real power `Real.rpow`; note `0 ^ 0 = 1` |
-| profiles of Lemmas 3.1, 4.1 | `fullBarenblatt d p b`, `compactBarenblatt d p b` | with the normalizing constants of eqs. (Bxc), (CBxc) |
+| profiles of Lemmas 3.1, 4.1 | [`fullBarenblatt d p b`](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Defs.html#Cutfast.fullBarenblatt), [`compactBarenblatt d p b`](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Defs.html#Cutfast.compactBarenblatt) | with the normalizing constants of eqs. (Bxc), (CBxc) |
 
 ### Map of the proof
 
@@ -60,7 +60,7 @@ The graph of which statement each proof uses, read from the compiled proofs, is 
 
 The key fact behind everything is that `v(t)` is the image of `v_∞` under the affine map
 `y ↦ a(t) y + e^{-t} x₀` with `a(t) = (1 - e^{-t/α})^α`
-([`Barenblatt.lean` L514](Cutfast/Barenblatt.lean#L514)). Together with Lemma 2.1 and the moments
+([`Barenblatt.lean` L514](Cutfast/Barenblatt.lean#L514) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Barenblatt.html#Cutfast.densityMeasure_solution))). Together with Lemma 2.1 and the moments
 of the Barenblatt profiles, this gives exact closed forms
 ([`Distances.lean`](Cutfast/Distances.lean)), with `M₂ = ∫|x|² v_∞`, `h = e^{-t}x₀`,
 `κ = d(1-m)`:
@@ -70,7 +70,7 @@ of the Barenblatt profiles, this gives exact closed forms
 - `Iₘ(v(t) ∣ v_∞) = a² (1-a^{-1/α})² M₂ + |h|²`.
 
 These use the exact virial identity `∫|x|² v_∞ = d ∫ v_∞ᵐ`
-([`Barenblatt.lean` L626](Cutfast/Barenblatt.lean#L626)), which makes the paper's `O(1)`
+([`Barenblatt.lean` L626](Cutfast/Barenblatt.lean#L626) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Barenblatt.html#Cutfast.integral_equilibrium_rpow))), which makes the paper's `O(1)`
 differences vanish.
 
 ### Size
@@ -94,42 +94,42 @@ differences vanish.
 
 ### Normalization of `B` (eq. (B))
 - **Lean:** [`barenblattConst_spec`](Challenge.lean#L114), proved by
-  [`barenblattConst_spec'`](Cutfast/Barenblatt.lean#L294).
+  [`barenblattConst_spec'`](Cutfast/Barenblatt.lean#L294) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Barenblatt.html#Cutfast.barenblattConst_spec')).
 - **Statement:** for `d ≥ 1`, `0 < m ≠ 1`, `m > (d-2)/d`, the constant is positive, makes `B` an
   integrable probability density, and is the only such positive constant.
 - **Proof:** `B_c` is rewritten as the full-space profile `(c + κ|x|²)^{-1/(1-m)}` when `m < 1`, or
   the compact profile `(c - κ|x|²)₊^{1/(m-1)}` when `m > 1`. The radial integrals of
   [`Radial.lean`](Cutfast/Radial.lean) (polar coordinates and Euler Beta integrals) give the mass
   as an explicit power of `c`, which yields existence and uniqueness
-  ([`exists_unique_const`](Cutfast/Barenblatt.lean#L244)).
+  ([`exists_unique_const`](Cutfast/Barenblatt.lean#L244) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Barenblatt.html#Cutfast.Barenblatt.exists_unique_const))).
 
 ### `v(t)` and `v_∞` are probability densities
 - **Lean:** [`solution_isProbabilityDensity`](Challenge.lean#L123) →
-  [`Barenblatt.lean` L499](Cutfast/Barenblatt.lean#L499);
+  [`Barenblatt.lean` L499](Cutfast/Barenblatt.lean#L499) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Barenblatt.html#Cutfast.solution_isProbabilityDensity'));
   [`equilibrium_isProbabilityDensity`](Challenge.lean#L129) →
-  [`Barenblatt.lean` L428](Cutfast/Barenblatt.lean#L428).
+  [`Barenblatt.lean` L428](Cutfast/Barenblatt.lean#L428) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Barenblatt.html#Cutfast.equilibrium_isProbabilityDensity')).
 - **Proof:** change of variables `x = a y + h` in `ℝᵈ`
-  ([`lintegral_comp_smul_add`](Cutfast/Barenblatt.lean#L63)) reduces both to the normalization of
+  ([`lintegral_comp_smul_add`](Cutfast/Barenblatt.lean#L63) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Barenblatt.html#Cutfast.Barenblatt.lintegral_comp_smul_add))) reduces both to the normalization of
   `B`.
 
 ### `v` solves `∂ₜv = Δ(vᵐ) + div(xv)` (eq. (FDEFP))
 - **Lean:** [`solution_hasDerivAt`](Challenge.lean#L137) →
-  [`solution_hasDerivAt'`](Cutfast/PDE.lean#L126).
+  [`solution_hasDerivAt'`](Cutfast/PDE.lean#L126) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/PDE.html#Cutfast.solution_hasDerivAt')).
 - **Statement:** a classical (pointwise) identity `∂ₜv = Δ(vᵐ) + d v + ⟨x, ∇v⟩` at every point
   `(t,x)`, `t > 0`, where `v > 0`. That is everywhere when `m < 1`, and inside the support when
   `m > 1`. The paper's weak formulation and uniqueness are not formalized.
 - **Proof:** near a positivity point the base of the profile is positive, so `v` is smooth. The
   Laplacian of `vᵐ` comes from the radial formula
   `Δ[G(|y-h|²)] = 4|y-h|² G''(|y-h|²) + 2d G'(|y-h|²)`
-  ([`laplacian_comp_normSq_sub`](Cutfast/PDE.lean#L53)), and the identity reduces to an algebraic
+  ([`laplacian_comp_normSq_sub`](Cutfast/PDE.lean#L53) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/PDE.html#Cutfast.PDE.laplacian_comp_normSq_sub))), and the identity reduces to an algebraic
   one.
 
 ### The solution `u` of `∂ₜu = Δ(uᵐ)` (eq. (sol)) and the time change (eqs. (uv), (FDEFPv))
 - **Lean:** [`fdeSolution_hasDerivAt`](Challenge.lean#L153) →
-  [`FDE.lean` L85](Cutfast/FDE.lean#L85);
+  [`FDE.lean` L85](Cutfast/FDE.lean#L85) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/FDE.html#Cutfast.fdeSolution_hasDerivAt'));
   [`fdeSolution_isProbabilityDensity`](Challenge.lean#L162) →
-  [`FDE.lean` L175](Cutfast/FDE.lean#L175);
-  [`solution_eq_fdeSolution`](Challenge.lean#L169) → [`FDE.lean` L194](Cutfast/FDE.lean#L194).
+  [`FDE.lean` L175](Cutfast/FDE.lean#L175) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/FDE.html#Cutfast.fdeSolution_isProbabilityDensity'));
+  [`solution_eq_fdeSolution`](Challenge.lean#L169) → [`FDE.lean` L194](Cutfast/FDE.lean#L194) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/FDE.html#Cutfast.solution_eq_fdeSolution')).
 - **Statement:** as for `v`: pointwise PDE where `u > 0`, probability density for `t > 0`, and
   `v(t,x) = e^{dt} u(α(e^{t/α}-1), eᵗx)`.
 - **Proof:** same method as for `v`; `u(t)` is the rescaling `t^{-αd} B(t^{-α}(x - x₀))`, and the
@@ -137,15 +137,15 @@ differences vanish.
 
 ### Initial condition `u(t), v(t) → δ_{x₀}` as `t → 0⁺`
 - **Lean:** [`tendsto_fdeSolution_zero`](Challenge.lean#L176) →
-  [`FDE.lean` L220](Cutfast/FDE.lean#L220);
-  [`tendsto_solution_zero`](Challenge.lean#L182) → [`FDE.lean` L243](Cutfast/FDE.lean#L243).
+  [`FDE.lean` L220](Cutfast/FDE.lean#L220) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/FDE.html#Cutfast.tendsto_fdeSolution_zero'));
+  [`tendsto_solution_zero`](Challenge.lean#L182) → [`FDE.lean` L243](Cutfast/FDE.lean#L243) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/FDE.html#Cutfast.tendsto_solution_zero')).
 - **Statement:** weak convergence, `∫ φ u(t) → φ(x₀)` for every bounded continuous `φ`.
 - **Proof:** both are images of the fixed density `B` under `y ↦ a y + h` with `a → 0`, `h → x₀`;
-  dominated convergence ([`tendsto_integral_affine`](Cutfast/FDE.lean#L62)).
+  dominated convergence ([`tendsto_integral_affine`](Cutfast/FDE.lean#L62) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/FDE.html#Cutfast.FDE.tendsto_integral_affine))).
 
 ### Long-time behavior (eq. (vinf))
 - **Lean:** [`tendsto_solution_atTop`](Challenge.lean#L189) →
-  [`FDE.lean` L263](Cutfast/FDE.lean#L263).
+  [`FDE.lean` L263](Cutfast/FDE.lean#L263) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/FDE.html#Cutfast.tendsto_solution_atTop')).
 - **Statement:** `v(t,x) → v_∞(x)` pointwise, and `v_∞ = (C + (1-m)/(2m)|x|²)₊^{1/(m-1)}` for
   some `C > 0`.
 - **Proof:** `v(t,x) = a(t)^{-d} v_∞((x - e^{-t}x₀)/a(t))` with `a(t) → 1`, and `v_∞` is
@@ -153,26 +153,26 @@ differences vanish.
 
 ### Finite second moment iff `m > d/(d+2)`
 - **Lean:** [`integrable_sq_mul_equilibrium_iff`](Challenge.lean#L196) →
-  [`HeavyTail.lean` L121](Cutfast/HeavyTail.lean#L121).
+  [`HeavyTail.lean` L121](Cutfast/HeavyTail.lean#L121) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/HeavyTail.html#Cutfast.integrable_sq_mul_equilibrium_iff')).
 - **Proof:** radial integral: `∫ u^s (C + bu)^{-p} du` is finite iff `s - p < -1`, with an explicit
-  lower bound in the divergent case ([`integral_ge`](Cutfast/HeavyTail.lean#L99)).
+  lower bound in the divergent case ([`integral_ge`](Cutfast/HeavyTail.lean#L99) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/HeavyTail.html#Cutfast.HeavyTail.integral_ge))).
 
 ## Section 1.3: distances and divergences
 
 ### `W₂² = +∞` for heavy tails
 - **Lean:** [`wassersteinSq_eq_top`](Challenge.lean#L203) →
-  [`wassersteinSq_eq_top'`](Cutfast/HeavyTail.lean#L272).
+  [`wassersteinSq_eq_top'`](Cutfast/HeavyTail.lean#L272) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/HeavyTail.html#Cutfast.wassersteinSq_eq_top')).
 - **Statement:** if `(d-2)/d < m ≤ d/(d+2)`, then `W₂²(v(t), v_∞) = +∞` for every `t > 0`. The
   paper only notes this for `d ≤ 2`; here it is proved for all such `m`.
 - **Proof:** a moment argument rather than tail asymptotics
-  ([`lintegral_cost_eq_top`](Cutfast/HeavyTail.lean#L153)). With `q = 2p - d ∈ (0,2]`, the moments
+  ([`lintegral_cost_eq_top`](Cutfast/HeavyTail.lean#L153) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/HeavyTail.html#Cutfast.HeavyTail.lintegral_cost_eq_top))). With `q = 2p - d ∈ (0,2]`, the moments
   `N(r) = ∫|x|^r v_∞` are finite for `r < q` and blow up as `r → q⁻`. A coupling of
   `law(aX + h)` and `law(X)`, `0 < a < 1`, with finite quadratic cost would give
   `N(r) ≤ (c²a)^r N(r) + K` uniformly in `r`, a contradiction.
 
 ### Entropy dissipation `dHₘ/dt = -Iₘ`
 - **Lean:** [`relEntropy_hasDerivAt`](Challenge.lean#L212) →
-  [`Entropy.lean` L18](Cutfast/Entropy.lean#L18).
+  [`Entropy.lean` L18](Cutfast/Entropy.lean#L18) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Entropy.html#Cutfast.relEntropy_hasDerivAt')).
 - **Statement:** for `m > d/(d+2)` and `t > 0`, `Iₘ(v(t)) < ∞` and
   `d/dt Hₘ(v(t) ∣ v_∞) = -Iₘ(v(t) ∣ v_∞)`.
 - **Proof:** differentiate the exact closed form of `Hₘ(v(t))` in `t` and compare with the closed
@@ -181,46 +181,46 @@ differences vanish.
 
 ### Bregman form (eq. (tsalisbis))
 - **Lean:** [`relEntropy_eq_bregman`](Challenge.lean#L222) →
-  [`Entropy.lean` L122](Cutfast/Entropy.lean#L122).
+  [`Entropy.lean` L122](Cutfast/Entropy.lean#L122) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Entropy.html#Cutfast.relEntropy_eq_bregman')).
 - **Statement:** for a probability density `f` with finite second moment and `fᵐ` integrable, and
   vanishing outside `supp v_∞` when `m > 1`: the integrand is integrable, `Hₘ` equals the Bregman
   form, and `Hₘ ≥ 0`.
 - **Proof:** on `supp v_∞`, `v_∞^{m-1} = C + (1-m)/(2m)|x|²`, so the two integrands differ by
   `mC(f - v_∞)/(m-1)`, whose integral vanishes. Nonnegativity is pointwise convexity (Bernoulli's
-  inequality, [`bregman_nonneg`](Cutfast/Entropy.lean#L72)).
+  inequality, [`bregman_nonneg`](Cutfast/Entropy.lean#L72) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Entropy.html#Cutfast.Entropy.bregman_nonneg))).
 
 ### The Tsallis function
 - **Lean:** [`tsallis_strictConvexOn_tendsto_log`](Challenge.lean#L237) →
-  [`Entropy.lean` L219](Cutfast/Entropy.lean#L219).
+  [`Entropy.lean` L219](Cutfast/Entropy.lean#L219) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Entropy.html#Cutfast.tsallis_strictConvexOn_tendsto_log')).
 - **Statement:** `x ↦ (xᵐ-1)/(m-1)` is strictly convex on `[0,∞)`, and `(xᵐ - x)/(m-1) → x log x`
   as `m → 1`. The paper's original claim (without subtracting `(x-1)/(m-1)`) is false; it is
-  disproved in [`tsallis_not_tendsto`](Cutfast/Entropy.lean#L195) (`ERRATA.md`, item 13).
+  disproved in [`tsallis_not_tendsto`](Cutfast/Entropy.lean#L195) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Entropy.html#Cutfast.Entropy.tsallis_not_tendsto)) (`ERRATA.md`, item 13).
 
 ## Section 1.4.2: diffusion limit `m → 1`
 
 - **Lean:** [`tendsto_barenblatt_one`](Challenge.lean#L245) →
-  [`DiffusionLimit.lean` L487](Cutfast/DiffusionLimit.lean#L487);
+  [`DiffusionLimit.lean` L487](Cutfast/DiffusionLimit.lean#L487) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/DiffusionLimit.html#Cutfast.tendsto_barenblatt_one'));
   [`tendsto_fdeSolution_one`](Challenge.lean#L252) (heat kernel) →
-  [L494](Cutfast/DiffusionLimit.lean#L494);
+  [L494](Cutfast/DiffusionLimit.lean#L494) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/DiffusionLimit.html#Cutfast.tendsto_fdeSolution_one'));
   [`tendsto_solution_one`](Challenge.lean#L260) (Mehler kernel) →
-  [L502](Cutfast/DiffusionLimit.lean#L502).
+  [L502](Cutfast/DiffusionLimit.lean#L502) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/DiffusionLimit.html#Cutfast.tendsto_solution_one')).
 - **Statement:** pointwise limits at fixed `d`, `t`, `x`, as `m → 1` from both sides.
 - **Proof:** `B` is the full-space (`m < 1`) or compact (`m > 1`) profile of shape
   `p = 1/|1-m| → ∞` and scale `κ` with `pκ → 1/4`. The Gamma ratio asymptotics
   `log Γ(y + a) - log Γ(y) - a log y → 0`, obtained from the log-convexity of `Γ`
-  ([`tendsto_gammaDefect_half`](Cutfast/DiffusionLimit.lean#L88)), show that the normalizing
+  ([`tendsto_gammaDefect_half`](Cutfast/DiffusionLimit.lean#L88) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/DiffusionLimit.html#Cutfast.DiffusionLimit.tendsto_gammaDefect_half))), show that the normalizing
   constant tends to `(4π)^{-d/2}`.
 
 ## Theorems 1.1 and 1.2: the cutoff phenomenon
 
 | Paper | Distance | Lean statement | Proof |
 |---|---|---|---|
-| Theorem 1.1 | `W₂²` | [`cutoff_wassersteinSq`](Challenge.lean#L271) | [`Cutoff.lean` L819](Cutfast/Cutoff.lean#L819) |
-| Theorem 1.1 | `Hₘ` | [`cutoff_relEntropy`](Challenge.lean#L287) | [`Cutoff.lean` L841](Cutfast/Cutoff.lean#L841) |
-| Theorem 1.1 | `Iₘ` | [`cutoff_fisherInfo`](Challenge.lean#L305) | [`Cutoff.lean` L867](Cutfast/Cutoff.lean#L867) |
-| Theorem 1.2 | `W₂²` | [`cutoff_fixedExponent_wassersteinSq`](Challenge.lean#L320) | [`Cutoff.lean` L886](Cutfast/Cutoff.lean#L886) |
-| Theorem 1.2 | `Hₘ` | [`cutoff_fixedExponent_relEntropy`](Challenge.lean#L332) | [`Cutoff.lean` L900](Cutfast/Cutoff.lean#L900) |
-| Theorem 1.2 | `Iₘ` | [`cutoff_fixedExponent_fisherInfo`](Challenge.lean#L345) | [`Cutoff.lean` L918](Cutfast/Cutoff.lean#L918) |
+| Theorem 1.1 | `W₂²` | [`cutoff_wassersteinSq`](Challenge.lean#L271) | [`Cutoff.lean` L819](Cutfast/Cutoff.lean#L819) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Cutoff.html#Cutfast.cutoff_wassersteinSq')) |
+| Theorem 1.1 | `Hₘ` | [`cutoff_relEntropy`](Challenge.lean#L287) | [`Cutoff.lean` L841](Cutfast/Cutoff.lean#L841) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Cutoff.html#Cutfast.cutoff_relEntropy')) |
+| Theorem 1.1 | `Iₘ` | [`cutoff_fisherInfo`](Challenge.lean#L305) | [`Cutoff.lean` L867](Cutfast/Cutoff.lean#L867) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Cutoff.html#Cutfast.cutoff_fisherInfo')) |
+| Theorem 1.2 | `W₂²` | [`cutoff_fixedExponent_wassersteinSq`](Challenge.lean#L320) | [`Cutoff.lean` L886](Cutfast/Cutoff.lean#L886) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Cutoff.html#Cutfast.cutoff_fixedExponent_wassersteinSq')) |
+| Theorem 1.2 | `Hₘ` | [`cutoff_fixedExponent_relEntropy`](Challenge.lean#L332) | [`Cutoff.lean` L900](Cutfast/Cutoff.lean#L900) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Cutoff.html#Cutfast.cutoff_fixedExponent_relEntropy')) |
+| Theorem 1.2 | `Iₘ` | [`cutoff_fixedExponent_fisherInfo`](Challenge.lean#L345) | [`Cutoff.lean` L918](Cutfast/Cutoff.lean#L918) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Cutoff.html#Cutfast.cutoff_fixedExponent_fisherInfo')) |
 
 - **Statement:** each theorem is a conjunction of the two limits of the paper:
   `sup_{|x₀| ≤ r√d} dist(v(t_d), v_∞) → +∞` for `t_d = (1-ε)·T·log d`, and `→ 0` for
@@ -242,12 +242,12 @@ differences vanish.
 
 | Paper | Distance | Lean statement | Proof |
 |---|---|---|---|
-| Theorem 1.1, radius `r d^θ` | `W₂²` | [`cutoff_wassersteinSq_radius`](Challenge.lean#L356) | [`CutoffRadius.lean` L393](Cutfast/CutoffRadius.lean#L393) |
-| | `Hₘ` | [`cutoff_relEntropy_radius`](Challenge.lean#L369) | [L412](Cutfast/CutoffRadius.lean#L412) |
-| | `Iₘ` | [`cutoff_fisherInfo_radius`](Challenge.lean#L382) | [L431](Cutfast/CutoffRadius.lean#L431) |
-| Theorem 1.2, radius `r d^θ` | `W₂²` | [`cutoff_fixedExponent_wassersteinSq_radius`](Challenge.lean#L394) | [L449](Cutfast/CutoffRadius.lean#L449) |
-| | `Hₘ` | [`cutoff_fixedExponent_relEntropy_radius`](Challenge.lean#L405) | [L461](Cutfast/CutoffRadius.lean#L461) |
-| | `Iₘ` | [`cutoff_fixedExponent_fisherInfo_radius`](Challenge.lean#L416) | [L473](Cutfast/CutoffRadius.lean#L473) |
+| Theorem 1.1, radius `r d^θ` | `W₂²` | [`cutoff_wassersteinSq_radius`](Challenge.lean#L356) | [`CutoffRadius.lean` L393](Cutfast/CutoffRadius.lean#L393) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/CutoffRadius.html#Cutfast.cutoff_wassersteinSq_radius')) |
+| | `Hₘ` | [`cutoff_relEntropy_radius`](Challenge.lean#L369) | [L412](Cutfast/CutoffRadius.lean#L412) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/CutoffRadius.html#Cutfast.cutoff_relEntropy_radius')) |
+| | `Iₘ` | [`cutoff_fisherInfo_radius`](Challenge.lean#L382) | [L431](Cutfast/CutoffRadius.lean#L431) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/CutoffRadius.html#Cutfast.cutoff_fisherInfo_radius')) |
+| Theorem 1.2, radius `r d^θ` | `W₂²` | [`cutoff_fixedExponent_wassersteinSq_radius`](Challenge.lean#L394) | [L449](Cutfast/CutoffRadius.lean#L449) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/CutoffRadius.html#Cutfast.cutoff_fixedExponent_wassersteinSq_radius')) |
+| | `Hₘ` | [`cutoff_fixedExponent_relEntropy_radius`](Challenge.lean#L405) | [L461](Cutfast/CutoffRadius.lean#L461) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/CutoffRadius.html#Cutfast.cutoff_fixedExponent_relEntropy_radius')) |
+| | `Iₘ` | [`cutoff_fixedExponent_fisherInfo_radius`](Challenge.lean#L416) | [L473](Cutfast/CutoffRadius.lean#L473) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/CutoffRadius.html#Cutfast.cutoff_fixedExponent_fisherInfo_radius')) |
 
 - **Statement:** the paper's sentence "the mixing time would become `max(α/2, θ) log d`" (Theorem
   1.1, any `θ ∈ ℝ`) and "`θ log d`" (Theorem 1.2, `θ > 0`), stated as in Theorems 1.1 and 1.2.
@@ -258,7 +258,7 @@ differences vanish.
 
 ### Lemma 2.1 (position-scale transformations)
 - **Lean:** [`wassersteinSq_map_affine`](Challenge.lean#L430) →
-  [`wassersteinSq_map_affine'`](Cutfast/Wasserstein.lean#L244).
+  [`wassersteinSq_map_affine'`](Cutfast/Wasserstein.lean#L244) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Wasserstein.html#Cutfast.wassersteinSq_map_affine')).
 - **Statement:** for `μ` a probability measure with finite second moment and `A` a positive
   (symmetric positive semidefinite) operator,
   `W₂²(μ, (A· + h)_#μ) = ∫|(A-I)x|² dμ + 2⟨(A-I)m_μ, h⟩ + |h|²`. The term
@@ -268,52 +268,52 @@ differences vanish.
   lower bound, `A` is regularized into `A + δI`; the Fenchel–Young inequality
   `2⟨x, Bw⟩ ≤ ⟨Bx, x⟩ + ⟨Bw, w⟩` bounds `|x - y|²` below by `f₁(x) + f₂(y)`, whose integral
   against any coupling only depends on the marginals; then `δ → 0`
-  ([`lower_bound`](Cutfast/Wasserstein.lean#L97)).
+  ([`lower_bound`](Cutfast/Wasserstein.lean#L97) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Wasserstein.html#Cutfast.Wasserstein.lower_bound))).
 
 ### Lemma 2.2 (elliptic families)
 - **Lean:** [`wassersteinSq_elliptic`](Challenge.lean#L445) →
-  [`wassersteinSq_elliptic'`](Cutfast/Elliptic.lean#L214).
+  [`wassersteinSq_elliptic'`](Cutfast/Elliptic.lean#L214) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Elliptic.html#Cutfast.wassersteinSq_elliptic')).
 - **Statement:** both covariance matrices are assumed positive definite (the corrected paper only
   needs `Σ_μ` definite; `ERRATA.md`, item 4). Square roots are `CFC.sqrt` for the matrix order.
 - **Proof:** as in the paper: `A = R⁻¹ √(R Σ_ν R) R⁻¹` with `R = √Σ_μ` satisfies `A Σ_μ A = Σ_ν`
-  ([`transportMatrix_mul`](Cutfast/Elliptic.lean#L86)), so rotation invariance of `η` identifies
+  ([`transportMatrix_mul`](Cutfast/Elliptic.lean#L86) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Elliptic.html#Cutfast.Elliptic.transportMatrix_mul))), so rotation invariance of `η` identifies
   `ν` as the image of `μ` under `x ↦ A(x - m_μ) + m_ν`; then Lemma 2.1, and the trace is computed
   from the covariance identity of `η`.
 
 ## Section 3: full-space Barenblatt profile (Lemma 3.1)
 
 - **Lean:** [`fullBarenblatt_moment`](Challenge.lean#L476) (eq. (Bac)) →
-  [`Moments.lean` L69](Cutfast/Moments.lean#L69);
+  [`Moments.lean` L69](Cutfast/Moments.lean#L69) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Moments.html#Cutfast.fullBarenblatt_moment'));
   [`fullBarenblatt_integral_rpow`](Challenge.lean#L485) (eq. (Bm)) →
-  [`Moments.lean` L104](Cutfast/Moments.lean#L104);
+  [`Moments.lean` L104](Cutfast/Moments.lean#L104) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Moments.html#Cutfast.fullBarenblatt_integral_rpow'));
   [`fullBarenblatt_asymptotics`](Challenge.lean#L497) (eqs. (M2sim), (difference-fde)) →
-  [`Asymptotics.lean` L417](Cutfast/Asymptotics.lean#L417).
+  [`Asymptotics.lean` L417](Cutfast/Asymptotics.lean#L417) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Asymptotics.html#Cutfast.fullBarenblatt_asymptotics')).
 - **Statement:** (Bac) for `-d < a < 2p - d` (corrected range, `ERRATA.md`, item 1). The
   asymptotics are stated for `p = dα/(2α-1)` and `b = (2α-1)/(2(α(d-2)+1))`, which is the profile
   `v_∞`.
-- **Proof:** the exact formulas are eq. (Ba) of [`Radial.lean`](Cutfast/Radial.lean#L252) with the
+- **Proof:** the exact formulas are eq. (Ba) of [`Radial.lean`](Cutfast/Radial.lean#L252) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Radial.html#Cutfast.integrable_rpow_norm_mul_add_sq_rpow_neg)) with the
   normalizing constant substituted. The asymptotics use a crude real Stirling formula
-  `log Γ(x) = x log x - x + o(x)` ([`Asymptotics.lean` L97](Cutfast/Asymptotics.lean#L97)). The
+  `log Γ(x) = x log x - x + o(x)` ([`Asymptotics.lean` L97](Cutfast/Asymptotics.lean#L97) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Asymptotics.html#Cutfast.Asymptotics.tendsto_log_Gamma_div_sub))). The
   `O(1)` difference is in fact exactly `0` for large `d`
-  ([`fullBarenblatt_secondMoment_eq`](Cutfast/Moments.lean#L206), virial identity).
+  ([`fullBarenblatt_secondMoment_eq`](Cutfast/Moments.lean#L206) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Moments.html#Cutfast.fullBarenblatt_secondMoment_eq)), virial identity).
 
 ## Section 4: compactly supported Barenblatt profile (Lemmas 4.1, 4.2)
 
 - **Lean:** [`compactBarenblatt_moment`](Challenge.lean#L527) (eq. (CBac)) →
-  [`Moments.lean` L139](Cutfast/Moments.lean#L139);
+  [`Moments.lean` L139](Cutfast/Moments.lean#L139) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Moments.html#Cutfast.compactBarenblatt_moment'));
   [`compactBarenblatt_integral_rpow`](Challenge.lean#L538) (eq. (Bmpme)) →
-  [`Moments.lean` L175](Cutfast/Moments.lean#L175);
+  [`Moments.lean` L175](Cutfast/Moments.lean#L175) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Moments.html#Cutfast.compactBarenblatt_integral_rpow'));
   [`compactBarenblatt_asymptotics`](Challenge.lean#L550) (eqs. (limit-alpha-constant-pme),
-  (difference-pme)) → [`Asymptotics.lean` L492](Cutfast/Asymptotics.lean#L492);
+  (difference-pme)) → [`Asymptotics.lean` L492](Cutfast/Asymptotics.lean#L492) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Asymptotics.html#Cutfast.compactBarenblatt_asymptotics'));
   [`compactBarenblatt_fixedExponent_asymptotics`](Challenge.lean#L566) (Lemma 4.2) →
-  [`Asymptotics.lean` L554](Cutfast/Asymptotics.lean#L554);
+  [`Asymptotics.lean` L554](Cutfast/Asymptotics.lean#L554) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Asymptotics.html#Cutfast.compactBarenblatt_fixedExponent_asymptotics'));
   [`compactBarenblatt_support`](Challenge.lean#L578) (support radius, after Lemma 4.2) →
-  [`CutoffRadius.lean` L485](Cutfast/CutoffRadius.lean#L485).
+  [`CutoffRadius.lean` L485](Cutfast/CutoffRadius.lean#L485) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/CutoffRadius.html#Cutfast.compactBarenblatt_support')).
 - **Statement:** (CBac) is proved for all `a > -d`, more than the paper's `a ≥ 0`; (Bmpme) needs
   `m > 0` (`ERRATA.md`, item 2). Lemma 4.2 is stated with `Asymptotics.IsEquivalent` (`~`).
-- **Proof:** eq. (Baporous) of [`Radial.lean`](Cutfast/Radial.lean#L271) and the same Stirling
+- **Proof:** eq. (Baporous) of [`Radial.lean`](Cutfast/Radial.lean#L271) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Radial.html#Cutfast.integrable_rpow_norm_mul_sub_sq_rpow)) and the same Stirling
   estimates as for Lemma 3.1; again the `O(1)` difference is exactly `0`
-  ([`compactBarenblatt_secondMoment_eq`](Cutfast/Moments.lean#L242)).
+  ([`compactBarenblatt_secondMoment_eq`](Cutfast/Moments.lean#L242) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Moments.html#Cutfast.compactBarenblatt_secondMoment_eq))).
 
 ## Remark 3.2: Student t-distributions
 
@@ -322,12 +322,12 @@ All proofs reduce to the standard Student density by the change of variables `x 
 
 | Claim | Lean statement | Proof | How |
 |---|---|---|---|
-| `x₀ + Y/√(Z/r)` has the Student density | [`student_law`](Challenge.lean#L607) | [L722](Cutfast/Student.lean#L722) | substitution `y = √(z/r) x`, Tonelli, Gamma integral; the Gaussian density comes from Mathlib's characteristic function |
-| mean iff `r > 1` (`= x₀`), covariance iff `r > 2` (`= r/(r-2) Σ`) | [`student_moments`](Challenge.lean#L617) | [L745](Cutfast/Student.lean#L745) | radial integrals; the covariance by reflection invariance and polarization |
-| `→ 𝒩(x₀, Σ)` as `r → ∞` | [`tendsto_student_gaussian`](Challenge.lean#L628) | [L878](Cutfast/Student.lean#L878) | dominated convergence for the unnormalized kernels; no Gamma asymptotics needed (`ERRATA.md`, item 10) |
-| `(X-x₀)ᵀΣ⁻¹(X-x₀)/d ∼ F(d,r)`; isotropic case rotation invariant | [`student_fisherSnedecor`](Challenge.lean#L637) | [L1020](Cutfast/Student.lean#L1020) | radial image of the standard density under `y ↦ |y|²/d` (`ERRATA.md`, item 9) |
-| `B` and `v_∞` are Student densities with `r = 1/(α(1-m))` (`m < 1`) | [`barenblatt_eq_student`](Challenge.lean#L648) | [L1168](Cutfast/Student.lean#L1168) | a normalized profile `(c + b|x|²)^{-(r+d)/2}` is an isotropic Student density |
-| `m = (d-1)/d`: `r = d` and `σ_d² → 2πe` | [`barenblatt_student_dMinusOne`](Challenge.lean#L658) | [L1220](Cutfast/Student.lean#L1220) | `σ_d²` from `M₂ = d²σ_d²/(d-2)` and Lemma 3.1 |
+| `x₀ + Y/√(Z/r)` has the Student density | [`student_law`](Challenge.lean#L607) | [L722](Cutfast/Student.lean#L722) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Student.html#Cutfast.student_law')) | substitution `y = √(z/r) x`, Tonelli, Gamma integral; the Gaussian density comes from Mathlib's characteristic function |
+| mean iff `r > 1` (`= x₀`), covariance iff `r > 2` (`= r/(r-2) Σ`) | [`student_moments`](Challenge.lean#L617) | [L745](Cutfast/Student.lean#L745) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Student.html#Cutfast.student_moments')) | radial integrals; the covariance by reflection invariance and polarization |
+| `→ 𝒩(x₀, Σ)` as `r → ∞` | [`tendsto_student_gaussian`](Challenge.lean#L628) | [L878](Cutfast/Student.lean#L878) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Student.html#Cutfast.tendsto_student_gaussian')) | dominated convergence for the unnormalized kernels; no Gamma asymptotics needed (`ERRATA.md`, item 10) |
+| `(X-x₀)ᵀΣ⁻¹(X-x₀)/d ∼ F(d,r)`; isotropic case rotation invariant | [`student_fisherSnedecor`](Challenge.lean#L637) | [L1020](Cutfast/Student.lean#L1020) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Student.html#Cutfast.student_fisherSnedecor')) | radial image of the standard density under `y ↦ |y|²/d` (`ERRATA.md`, item 9) |
+| `B` and `v_∞` are Student densities with `r = 1/(α(1-m))` (`m < 1`) | [`barenblatt_eq_student`](Challenge.lean#L648) | [L1168](Cutfast/Student.lean#L1168) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Student.html#Cutfast.barenblatt_eq_student')) | a normalized profile `(c + b|x|²)^{-(r+d)/2}` is an isotropic Student density |
+| `m = (d-1)/d`: `r = d` and `σ_d² → 2πe` | [`barenblatt_student_dMinusOne`](Challenge.lean#L658) | [L1220](Cutfast/Student.lean#L1220) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Student.html#Cutfast.barenblatt_student_dMinusOne')) | `σ_d²` from `M₂ = d²σ_d²/(d-2)` and Lemma 3.1 |
 
 ## Remark 4.3: projections of uniform laws on spheres
 
@@ -337,14 +337,14 @@ and the Gaussian representation `∫ g dσ = ∫ g(x/|x|) γ(dx)` ([`Sphere.lean
 
 | Claim | Lean statement | Proof | How |
 |---|---|---|---|
-| `(X₁,…,X_n)` has density `C(R² - |y|²)^{(d-n-2)/2}` on the ball | [`sphereUniform_map_projFirst`](Challenge.lean#L681) | [L747](Cutfast/Sphere.lean#L747) | split `ℝ^{n+k} = ℝⁿ × ℝᵏ`, one-dimensional substitutions, Tonelli; corrected constant (`ERRATA.md`, items 8, 12, 14) |
-| `RZ/|Z|` is uniform on the sphere | [`stdGaussian_map_sphereUniform`](Challenge.lean#L690) | [L756](Cutfast/Sphere.lean#L756) | the Gaussian density is radial, so polar coordinates separate the direction `Z/|Z|` from the radius |
-| stereographic projection has density `Γ(d-1)/(π^{(d-1)/2} Γ((d-1)/2)) (1+|y|²)^{-(d-1)}` | [`sphereUniform_map_stereoProj`](Challenge.lean#L702) | [L763](Cutfast/Sphere.lean#L763) | substitution `t = (a² - λ²)/(2λ)` and Legendre duplication (`ERRATA.md`, item 11) |
+| `(X₁,…,X_n)` has density `C(R² - |y|²)^{(d-n-2)/2}` on the ball | [`sphereUniform_map_projFirst`](Challenge.lean#L681) | [L747](Cutfast/Sphere.lean#L747) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Sphere.html#Cutfast.sphereUniform_map_projFirst')) | split `ℝ^{n+k} = ℝⁿ × ℝᵏ`, one-dimensional substitutions, Tonelli; corrected constant (`ERRATA.md`, items 8, 12, 14) |
+| `RZ/|Z|` is uniform on the sphere | [`stdGaussian_map_sphereUniform`](Challenge.lean#L690) | [L756](Cutfast/Sphere.lean#L756) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Sphere.html#Cutfast.stdGaussian_map_sphereUniform')) | the Gaussian density is radial, so polar coordinates separate the direction `Z/|Z|` from the radius |
+| stereographic projection has density `Γ(d-1)/(π^{(d-1)/2} Γ((d-1)/2)) (1+|y|²)^{-(d-1)}` | [`sphereUniform_map_stereoProj`](Challenge.lean#L702) | [L763](Cutfast/Sphere.lean#L763) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Sphere.html#Cutfast.sphereUniform_map_stereoProj')) | substitution `t = (a² - λ²)/(2λ)` and Legendre duplication (`ERRATA.md`, item 11) |
 
 The density in `sphereUniform_map_projFirst` is restricted to the open ball by an indicator: with
 the `max (·) 0 ^ e` convention alone, the case `d = n + 2` would give the constant density `C` on
 all of `ℝⁿ` (`0 ^ 0 = 1`), which is false
-([`sphereUniform_map_projFirst_counterexample`](Cutfast/Sphere.lean#L502)).
+([`sphereUniform_map_projFirst_counterexample`](Cutfast/Sphere.lean#L502) ([API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Sphere.html#Cutfast.Sphere.sphereUniform_map_projFirst_counterexample))).
 
 ## Not formalized
 

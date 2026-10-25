@@ -19,6 +19,7 @@ import yaml
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 OUT = ROOT / "docs" / "dependencies.md"
+API = "https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/"
 
 LEAN_QUERY = r"""
 import Cutfast
@@ -81,6 +82,21 @@ GROUPS = [
 
 def short(name: str) -> str:
     return name.removeprefix("Cutfast.").rstrip("'")
+
+
+def module_of(name: str) -> str:
+    """The module of `Cutfast/` that proves `name'`."""
+    pattern = re.compile(rf"^(?:theorem|lemma) {re.escape(name)}'(?:\s|$)", re.M)
+    found = [p.stem for p in (ROOT / "Cutfast").glob("*.lean")
+             if pattern.search(p.read_text(encoding="utf-8"))]
+    if len(found) != 1:
+        sys.exit(f"cannot locate {name}' in Cutfast/")
+    return found[0]
+
+
+def api_link(name: str) -> str:
+    """Link to the API page of the proving lemma `name'`."""
+    return f"[`{name}`]({API}{module_of(name)}.html#Cutfast.{name}')"
 
 
 def statement_edges(names: list[str]) -> dict[str, set[str]]:
@@ -160,7 +176,7 @@ def statement_graph(names: list[str], sources: dict[str, str]) -> str:
     lines.append("```")
     legend = " · ".join(f"{title} ({fill_name})" for (_, title, _, _, _), fill_name in
                         zip(GROUPS, ["gray", "blue", "green", "orange", "violet"]))
-    alone = ", ".join(f"`{node}`" for node in isolated)
+    alone = ", ".join(api_link(node) for node in isolated)
     return ("\n".join(lines) + f"\n\nColors: {legend}.\n\n"
             f"Not drawn: {len(isolated)} statements whose proofs use no other advertised statement "
             f"and are used by none: {alone}.")
@@ -180,7 +196,14 @@ def module_graph() -> str:
         for i in sorted(reduced[m]):
             lines.append(f"  {m} --> {i}")
     lines.append("```")
-    return "\n".join(lines)
+    pages = ", ".join(f"[{m}]({API}{m}.html)" for m in modules)
+    return "\n".join(lines) + f"\n\nAPI documentation of each module: {pages}."
+
+
+def api_table(names: list[str], sources: dict[str, str]) -> str:
+    rows = ["| Paper | Lean proof (API documentation) |", "|---|---|"]
+    rows += [f"| {sources[n]} | {api_link(n)} |" for n in map(short, names)]
+    return "\n".join(rows)
 
 
 def main() -> None:
@@ -208,6 +231,13 @@ lemmas only. See `FORMALIZATION_GUIDE.md` for each statement.
 omitted). `Defs` holds the definitions of `Challenge.lean`.
 
 {module_graph()}
+
+## API documentation of each statement
+
+Each statement `T` of `Challenge.lean` is proved by the lemma `T'`, whose API documentation is
+linked below.
+
+{api_table(names, sources)}
 """, encoding="utf-8")
     print(f"wrote {OUT.relative_to(ROOT)}")
 

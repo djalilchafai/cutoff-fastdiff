@@ -21,7 +21,8 @@ Fisher information `Iₘ` to equilibrium, maximized over `|x₀| ≤ r√d`, jum
 
 ![Cutoff profiles of W₂², Hₘ and Iₘ for α = 1 and growing d](docs/cutoff-profiles.png)
 
-The curves are the exact formulas proved in Lean (`Cutfast/Distances.lean`), evaluated with the
+The curves are the exact formulas proved in Lean (`Cutfast/Distances.lean`,
+[API](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Distances.html)), evaluated with the
 exact second moment of Lemma 3.1. The critical time depends on `α` as follows:
 
 ![Critical time max(1, α)/2 of Theorem 1.1 as a function of α](docs/critical-time.png)
