@@ -17,6 +17,11 @@ reading the proofs line by line.
   and `Solution.lean` are identical and that only the axioms `propext`, `Classical.choice` and
   `Quot.sound` are used.
 - **Links** below point to the statement in `Challenge.lean` and to the proving lemma.
+- **API documentation** of every Cutfast declaration, with search, is at
+  https://djalilchafai.github.io/cutoff-fastdiff/Cutfast.html; links to Mathlib go to its official
+  documentation. It is rebuilt on demand by the `docs` job of CI, in about 7 minutes thanks to a
+  cache of the documentation data of each module (about 85 minutes without it, when the cache has
+  not been used for 7 days or the Mathlib or doc-gen4 version changes).
 
 ### Notation and conventions
 
