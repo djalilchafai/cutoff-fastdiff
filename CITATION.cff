@@ -1,0 +1,34 @@
+cff-version: 1.2.0
+message: "If you use this formalization, please cite it and the paper it formalizes."
+type: software
+title: "Cutfast: a Lean 4 / Mathlib formalization of the cutoff phenomenon for fast diffusion and porous medium equations"
+authors:
+  - family-names: "Chafaï"
+    given-names: "Djalil"
+license: Apache-2.0
+repository-code: "https://github.com/djalilchafai/cutoff-fastdiff"
+url: "https://djalilchafai.github.io/cutoff-fastdiff/Cutfast.html"
+keywords:
+  - lean4
+  - mathlib
+  - formalization
+  - cutoff phenomenon
+  - fast diffusion
+  - porous medium equation
+  - optimal transport
+references:
+  - type: article
+    title: "On the cutoff phenomenon for fast diffusion and porous medium equations"
+    authors:
+      - family-names: "Chafaï"
+        given-names: "Djalil"
+      - family-names: "Fathi"
+        given-names: "Max"
+      - family-names: "Simonov"
+        given-names: "Nikita"
+    year: 2025
+    identifiers:
+      - type: other
+        value: "arXiv:2503.11770"
+        description: "arXiv preprint"
+    url: "https://arxiv.org/abs/2503.11770"

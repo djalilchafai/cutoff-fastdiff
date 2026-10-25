@@ -92,6 +92,8 @@ Palomar expects the Lean project at the repository root.
 
 ## Citation
 
+GitHub's "Cite this repository" button uses `CITATION.cff`.
+
 To cite the paper:
 
 ```bibtex
