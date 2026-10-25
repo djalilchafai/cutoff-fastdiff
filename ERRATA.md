@@ -1,11 +1,13 @@
-# Errata for the paper (`current/cutfast.tex`) found during the Lean formalization
+# Errata for arXiv v1 of the paper, found during the Lean formalization
 
 Mathematical issues in *On the cutoff phenomenon for fast diffusion and porous medium
-equations* (D. Chafaï, M. Fathi, N. Simonov, arXiv:2503.11770) found while formalizing it in
-Lean. All the fixes below have been applied to `lean/cutfast-lean.tex` only; `current/cutfast.tex` and the
-submission snapshots are unchanged.
+equations* (D. Chafaï, M. Fathi, N. Simonov), version 1 on arXiv
+([arXiv:2503.11770v1](https://arxiv.org/abs/2503.11770v1)), found while formalizing it in Lean.
+All the fixes below are applied to version 2
+([arXiv:2503.11770v2](https://arxiv.org/abs/2503.11770v2)), and to `cutfast-lean.tex` in this
+repository.
 
-## Errors fixed in `lean/cutfast-lean.tex`
+## Errors in arXiv v1 and their fixes
 
 1. **Lemma 3.1, eq. (Bac), and eq. (Ba) in its proof: wrong range for `a`.**
    - Paper: "for all `a > d − 2p`".
