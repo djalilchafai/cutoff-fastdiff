@@ -1,7 +1,9 @@
 # Formalization guide
 
-This guide follows the paper `cutfast-lean.tex` (the corrected version of
-[arXiv:2503.11770](https://arxiv.org/abs/2503.11770); see `ERRATA.md`) statement by statement.
+This guide follows the paper `cutfast-lean.tex` statement by statement. This file is version 1
+on arXiv ([arXiv:2503.11770v1](https://arxiv.org/abs/2503.11770v1)) with the corrections listed in
+`ERRATA.md`, and is essentially identical to version 2
+([arXiv:2503.11770v2](https://arxiv.org/abs/2503.11770v2)).
 For each one it says where the Lean statement is, how the paper's objects were translated, and how
 the Lean proof goes. It is meant for a mathematician who wants to check the formalization without
 reading the proofs line by line.
