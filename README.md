@@ -89,3 +89,31 @@ checkout whose `.lake` is a real directory.
 Submissions go through the form at https://submit.palomar-registry.org/ (see the
 [Palomar policy](https://github.com/PalomarRegistry/PalomarPolicy/blob/main/CONTRIBUTING.md));
 Palomar expects the Lean project at the repository root.
+
+## Citation
+
+To cite the paper:
+
+```bibtex
+@misc{ChafaiFathiSimonov2025,
+  author        = {Chafa{\"\i}, Djalil and Fathi, Max and Simonov, Nikita},
+  title         = {On the cutoff phenomenon for fast diffusion and porous medium equations},
+  year          = {2025},
+  eprint        = {2503.11770},
+  archivePrefix = {arXiv},
+  primaryClass  = {math.AP},
+  url           = {https://arxiv.org/abs/2503.11770}
+}
+```
+
+To cite this formalization:
+
+```bibtex
+@software{Chafai2026Cutfast,
+  author = {Chafa{\"\i}, Djalil},
+  title  = {Cutfast: a {Lean} 4 / {Mathlib} formalization of the cutoff phenomenon for fast
+            diffusion and porous medium equations},
+  year   = {2026},
+  url    = {https://github.com/djalilchafai/cutoff-fastdiff}
+}
+```
