@@ -6,6 +6,7 @@
 [![arXiv](https://img.shields.io/badge/arXiv-2503.11770-b31b1b)](https://arxiv.org/abs/2503.11770)
 [![Lean v4.35.0-rc2](https://img.shields.io/badge/Lean-v4.35.0--rc2-blue)](lean-toolchain)
 [![Mathlib 065356127b](https://img.shields.io/badge/Mathlib-065356127b-blue)](https://github.com/leanprover-community/mathlib4/tree/065356127b1dc0016f66b7283ce0ce2c4055aa55)
+[![Palomar format](https://img.shields.io/badge/Palomar-format-blue)](https://palomar-registry.org/)
 
 A Lean 4 / Mathlib formalization, in the [Palomar](https://palomar-registry.org/) format, of
 
