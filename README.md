@@ -30,8 +30,12 @@ exact second moment of Lemma 3.1. The critical time depends on `α` as follows:
 how the Lean modules import each other.
 
 The API documentation of the Lean development is at
-https://djalilchafai.github.io/cutoff-fastdiff/Cutfast.html (rebuilt on demand by the `docs`
-job of CI; links to Mathlib and Lean go to their official documentation).
+https://djalilchafai.github.io/cutoff-fastdiff/Cutfast.html (links to Mathlib and Lean go to
+their official documentation). It is rebuilt on demand by the `docs` job of CI (Actions > CI >
+Run workflow). That job caches the documentation data extracted from each module, so a rebuild
+takes about 7 minutes; without the cache it takes about 85 minutes, almost all spent on Mathlib.
+The cache is dropped by GitHub after 7 days without use, and starts afresh when the Mathlib or
+doc-gen4 version changes.
 
 ## Repository map
 
