@@ -53,6 +53,8 @@ Radial ─► Moments ─► Asymptotics ─────────────
    └─► Student (Remark 3.2)                Sphere (Remark 4.3)
 ```
 
+API documentation of each module: [Radial](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Radial.html), [Moments](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Moments.html), [Asymptotics](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Asymptotics.html), [Barenblatt](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Barenblatt.html), [Distances](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Distances.html), [Cutoff](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Cutoff.html), [CutoffRadius](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/CutoffRadius.html), [Wasserstein](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Wasserstein.html), [Elliptic](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Elliptic.html), [PDE](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/PDE.html), [FDE](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/FDE.html), [HeavyTail](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/HeavyTail.html), [Entropy](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Entropy.html), [DiffusionLimit](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/DiffusionLimit.html), [Student](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Student.html), [Sphere](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Sphere.html), [Defs](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast/Defs.html) (the definitions of `Challenge.lean`).
+
 The graph of which statement each proof uses, read from the compiled proofs, is in
 [`docs/dependencies.md`](docs/dependencies.md).
 
