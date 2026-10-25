@@ -1,5 +1,7 @@
 # Cutfast: cutoff for fast diffusion and porous medium equations in Lean
 
+[![API docs](https://img.shields.io/badge/docs-API-blue)](https://djalilchafai.github.io/cutoff-fastdiff/Cutfast.html)
+
 A Lean 4 / Mathlib formalization, in the [Palomar](https://palomar-registry.org/) format, of
 
 > D. Chafaï, M. Fathi, N. Simonov, *On the cutoff phenomenon for fast diffusion and porous
