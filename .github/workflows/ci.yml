@@ -89,7 +89,7 @@ jobs:
         run: |
           python3 scripts/sync-defs.py --check
           python3 scripts/gen-solution.py --check
-      - uses: leanprover/lean-action@24581d74d674803a25a81b10b059c5c0cdd344c6
+      - uses: leanprover/lean-action@fe408643ea7367d8c0404a8be3975bb145f5fb64
         with:
           build: true
 
@@ -107,7 +107,7 @@ jobs:
           persist-credentials: false
       - name: Check Lean source requirements before builds
         run: python3 scripts/check-lean-sources.py
-      - uses: leanprover/lean-action@24581d74d674803a25a81b10b059c5c0cdd344c6
+      - uses: leanprover/lean-action@fe408643ea7367d8c0404a8be3975bb145f5fb64
         with:
           build: false
       - name: Restore the documentation database
@@ -168,7 +168,7 @@ jobs:
           persist-credentials: false
       - name: Check Lean source requirements before builds
         run: python3 scripts/check-lean-sources.py
-      - uses: leanprover/lean-action@24581d74d674803a25a81b10b059c5c0cdd344c6
+      - uses: leanprover/lean-action@fe408643ea7367d8c0404a8be3975bb145f5fb64
         with:
           build: false
       - name: Install bubblewrap for lake comparator's sandbox
