@@ -6,7 +6,7 @@
 [![arXiv](https://img.shields.io/badge/arXiv-2503.11770-b31b1b)](https://arxiv.org/abs/2503.11770)
 [![Lean v4.35.0-rc2](https://img.shields.io/badge/Lean-v4.35.0--rc2-blue)](lean-toolchain)
 [![Mathlib 065356127b](https://img.shields.io/badge/Mathlib-065356127b-blue)](https://github.com/leanprover-community/mathlib4/tree/065356127b1dc0016f66b7283ce0ce2c4055aa55)
-[![Palomar format](https://img.shields.io/badge/Palomar-format-blue)](https://palomar-registry.org/)
+[![Palomar PALOMAR-2026-11-20-000017](https://img.shields.io/badge/Palomar-2026--11--20--000017-blue)](https://palomar-registry.org/entry.html?id=PALOMAR-2026-11-20-000017&version=1)
 
 A Lean 4 / Mathlib formalization, in the [Palomar](https://palomar-registry.org/) format, of
 
@@ -106,6 +106,9 @@ ruby scripts/validate-formalization.rb
 
 `lake comparator` sandboxes with `bwrap`, which cannot mount over a symlinked `.lake`: run it in a
 checkout whose `.lake` is a real directory.
+
+Version 1 (commit `6621bf2`) is registered on Palomar as
+[PALOMAR-2026-11-20-000017](https://palomar-registry.org/entry.html?id=PALOMAR-2026-11-20-000017&version=1).
 
 Submissions go through the form at https://submit.palomar-registry.org/ (see the
 [Palomar policy](https://github.com/PalomarRegistry/PalomarPolicy/blob/main/CONTRIBUTING.md));

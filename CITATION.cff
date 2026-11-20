@@ -8,6 +8,13 @@ authors:
 license: Apache-2.0
 repository-code: "https://github.com/djalilchafai/cutoff-fastdiff"
 url: "https://djalilchafai.github.io/cutoff-fastdiff/Cutfast.html"
+identifiers:
+  - type: other
+    value: "PALOMAR-2026-11-20-000017"
+    description: "Palomar registry identifier (version 1, commit 6621bf2a7779c7fb7cbda04bb7c860d853c5c516)"
+  - type: url
+    value: "https://palomar-registry.org/entry.html?id=PALOMAR-2026-11-20-000017&version=1"
+    description: "Palomar registry entry"
 keywords:
   - lean4
   - mathlib
