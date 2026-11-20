@@ -34,11 +34,16 @@ sources:
       - "Max Fathi"
       - "Nikita Simonov"
     id: "arXiv:2503.11770"
-    type: "article"
+    type: "paper"
     location: "https://arxiv.org/abs/2503.11770"
     relationship: "formalizes"
     license: "unknown"
     author_endorsement: "participated"
+    note: >-
+      The results are those of the paper (source-based). No prior Lean or other formalization of
+      this paper or of the cutoff phenomenon for these equations is known to the authors; no
+      systematic literature search for related formalizations was carried out, so this is not a
+      novelty claim.
 
 related_formalizations: []
 
