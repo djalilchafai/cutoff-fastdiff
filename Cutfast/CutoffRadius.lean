@@ -408,9 +408,14 @@ theorem cutoff_wassersteinSq_radius' {α r ε θ : ℝ} (hα : 0 < α) (hα2 : �
   · obtain ⟨K, H⟩ := upperHyp_alpha (θ := θ) hα hα2 hr hε
     exact wassersteinSq_upper H
 
-/-- **Section 1.4.3, Theorem 1.1 for other initial data, relative entropy.** -/
+/-- **Section 1.4.3, Theorem 1.1 for other initial data, relative entropy.** As in
+`cutoff_relEntropy`, the entropy integrand is integrable for large `d`, for all `t > 0` and all
+initial points in the ball. -/
 theorem cutoff_relEntropy_radius' {α r ε θ : ℝ} (hα : 0 < α) (hα2 : α ≠ 1 / 2) (hr : 0 < r)
     (hε : 0 < ε) :
+    (∀ᶠ d : ℕ in atTop, ∀ x₀ ∈ closedBall (0 : E d) (r * (d : ℝ) ^ θ), ∀ t > 0,
+      Integrable (relEntropyDensity (exponentOfAlpha α d) (solution d (exponentOfAlpha α d) x₀ t)
+        (equilibrium d (exponentOfAlpha α d)))) ∧
     (ε < 1 → Tendsto (fun d : ℕ => ⨆ x₀ ∈ closedBall (0 : E d) (r * (d : ℝ) ^ θ),
         (relEntropy (exponentOfAlpha α d)
           (solution d (exponentOfAlpha α d) x₀ ((1 - ε) * max (α / 2) θ * log d))
@@ -419,7 +424,9 @@ theorem cutoff_relEntropy_radius' {α r ε θ : ℝ} (hα : 0 < α) (hα2 : α �
         (relEntropy (exponentOfAlpha α d)
           (solution d (exponentOfAlpha α d) x₀ ((1 + ε) * max (α / 2) θ * log d))
           (equilibrium d (exponentOfAlpha α d)) : EReal)) atTop (𝓝 0) := by
-  refine ⟨fun hε1 => ?_, ?_⟩
+  refine ⟨?_, fun hε1 => ?_, ?_⟩
+  · filter_upwards [Cutoff.eventually_admissible_exponentOfAlpha hα hα2] with d ⟨h, h2, _, _⟩ x₀ _ t ht
+    exact integrable_relEntropyDensity_solution h h2 x₀ ht
   · rcases lt_or_ge (α / 2) θ with hθ | hθ
     · exact relEntropy_lower_shift (shiftHyp_alpha hα hα2 hr hε1 hε hθ)
     · obtain ⟨k, hk, H⟩ := scaleHyp_alpha hα hα2 hε hε1 hθ
@@ -457,9 +464,13 @@ theorem cutoff_fixedExponent_wassersteinSq_radius' {m r ε θ : ℝ} (hm : 1 < m
   obtain ⟨K, H⟩ := upperHyp_fixed hm hr hε hθ
   exact ⟨fun hε1 => wassersteinSq_lower_shift (shiftHyp_fixed hm hr hε hε1 hθ), wassersteinSq_upper H⟩
 
-/-- **Section 1.4.3, Theorem 1.2 for other initial data, relative entropy.** -/
+/-- **Section 1.4.3, Theorem 1.2 for other initial data, relative entropy.** As in
+`cutoff_fixedExponent_relEntropy`, the entropy integrand is integrable for large `d`, for all
+`t > 0` and all initial points in the ball. -/
 theorem cutoff_fixedExponent_relEntropy_radius' {m r ε θ : ℝ} (hm : 1 < m) (hr : 0 < r)
     (hε : 0 < ε) (hθ : 0 < θ) :
+    (∀ᶠ d : ℕ in atTop, ∀ x₀ ∈ closedBall (0 : E d) (r * (d : ℝ) ^ θ), ∀ t > 0,
+      Integrable (relEntropyDensity m (solution d m x₀ t) (equilibrium d m))) ∧
     (ε < 1 → Tendsto (fun d : ℕ => ⨆ x₀ ∈ closedBall (0 : E d) (r * (d : ℝ) ^ θ),
         (relEntropy m (solution d m x₀ ((1 - ε) * θ * log d)) (equilibrium d m) : EReal))
         atTop (𝓝 ⊤)) ∧
@@ -467,7 +478,10 @@ theorem cutoff_fixedExponent_relEntropy_radius' {m r ε θ : ℝ} (hm : 1 < m) (
         (relEntropy m (solution d m x₀ ((1 + ε) * θ * log d)) (equilibrium d m) : EReal))
         atTop (𝓝 0) := by
   obtain ⟨K, H⟩ := upperHyp_fixed hm hr hε hθ
-  exact ⟨fun hε1 => relEntropy_lower_shift (shiftHyp_fixed hm hr hε hε1 hθ), relEntropy_upper H⟩
+  refine ⟨?_, fun hε1 => relEntropy_lower_shift (shiftHyp_fixed hm hr hε hε1 hθ), relEntropy_upper H⟩
+  filter_upwards [eventually_ge_atTop 1] with d hd x₀ _ t ht
+  obtain ⟨h, h2⟩ := Cutoff.admissible_of_one_lt hm hd
+  exact integrable_relEntropyDensity_solution h h2 x₀ ht
 
 /-- **Section 1.4.3, Theorem 1.2 for other initial data, Fisher information.** -/
 theorem cutoff_fixedExponent_fisherInfo_radius' {m r ε θ : ℝ} (hm : 1 < m) (hr : 0 < r)

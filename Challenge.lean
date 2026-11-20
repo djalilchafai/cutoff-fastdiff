@@ -365,9 +365,14 @@ theorem cutoff_wassersteinSq_radius {α r ε θ : ℝ} (hα : 0 < α) (hα2 : α
           (densityMeasure (equilibrium d (exponentOfAlpha α d)))) atTop (𝓝 0) := by
   sorry
 
-/-- **Section 1.4.3, Theorem 1.1 for other initial data, relative entropy.** -/
+/-- **Section 1.4.3, Theorem 1.1 for other initial data, relative entropy.** As in
+`cutoff_relEntropy`, the entropy integrand is integrable for large `d`, for all `t > 0` and all
+initial points in the ball. -/
 theorem cutoff_relEntropy_radius {α r ε θ : ℝ} (hα : 0 < α) (hα2 : α ≠ 1 / 2) (hr : 0 < r)
     (hε : 0 < ε) :
+    (∀ᶠ d : ℕ in atTop, ∀ x₀ ∈ closedBall (0 : E d) (r * (d : ℝ) ^ θ), ∀ t > 0,
+      Integrable (relEntropyDensity (exponentOfAlpha α d) (solution d (exponentOfAlpha α d) x₀ t)
+        (equilibrium d (exponentOfAlpha α d)))) ∧
     (ε < 1 → Tendsto (fun d : ℕ => ⨆ x₀ ∈ closedBall (0 : E d) (r * (d : ℝ) ^ θ),
         (relEntropy (exponentOfAlpha α d)
           (solution d (exponentOfAlpha α d) x₀ ((1 - ε) * max (α / 2) θ * log d))
@@ -401,9 +406,13 @@ theorem cutoff_fixedExponent_wassersteinSq_radius {m r ε θ : ℝ} (hm : 1 < m)
           (densityMeasure (equilibrium d m))) atTop (𝓝 0) := by
   sorry
 
-/-- **Section 1.4.3, Theorem 1.2 for other initial data, relative entropy.** -/
+/-- **Section 1.4.3, Theorem 1.2 for other initial data, relative entropy.** As in
+`cutoff_fixedExponent_relEntropy`, the entropy integrand is integrable for large `d`, for all
+`t > 0` and all initial points in the ball. -/
 theorem cutoff_fixedExponent_relEntropy_radius {m r ε θ : ℝ} (hm : 1 < m) (hr : 0 < r)
     (hε : 0 < ε) (hθ : 0 < θ) :
+    (∀ᶠ d : ℕ in atTop, ∀ x₀ ∈ closedBall (0 : E d) (r * (d : ℝ) ^ θ), ∀ t > 0,
+      Integrable (relEntropyDensity m (solution d m x₀ t) (equilibrium d m))) ∧
     (ε < 1 → Tendsto (fun d : ℕ => ⨆ x₀ ∈ closedBall (0 : E d) (r * (d : ℝ) ^ θ),
         (relEntropy m (solution d m x₀ ((1 - ε) * θ * log d)) (equilibrium d m) : EReal))
         atTop (𝓝 ⊤)) ∧

@@ -87,8 +87,8 @@ automation:
   notes: >-
     The orchestrating agent wrote Challenge.lean, a module blueprint with fixed sorry-stubbed
     interfaces, and briefs; sub-agents proved the modules in parallel; the orchestrator
-    integrated, built, checked axioms and ran lake comparator. Human review of the statements
-    is pending.
+    integrated, built, checked axioms and ran lake comparator. The statements were then
+    audited by the paper's first author.
 
 fidelity:
   divergences: >-
@@ -109,12 +109,13 @@ fidelity:
     {v = 0} because the integrand carries the factor v.
 
 review:
-  status: "self-assessed"
+  status: "author-verified"
   reviewers:
-    - "none"
+    - "Djalil Chafaï"
   notes: >-
     Statements were written and audited by the orchestrating agent against the paper (including
-    a numerical check of the PDE identity); a human audit by the paper's author is pending.
+    a numerical check of the PDE identity), then audited by Djalil Chafaï, an author of the
+    paper, against the paper and its corrected source cutfast-lean.tex.
 
 alignment:
   namespace: "Cutfast"

@@ -84,10 +84,10 @@ doc-gen4 version changes.
 <!-- lines:begin -->
 | | Lines |
 |---|---:|
-| `Cutfast/*.lean` | 8,119 |
-| `Challenge.lean` | 708 |
-| `Solution.lean` | 589 |
-| **This formalization** | **9,416** |
+| `Cutfast/*.lean` | 8,133 |
+| `Challenge.lean` | 717 |
+| `Solution.lean` | 598 |
+| **This formalization** | **9,448** |
 | Mathlib, whole library (8,536 files, all imported) | 2,330,053 |
 | **Mathlib, used by the proofs** (40,060 declarations in 1,970 files) | **180,440** |
 
